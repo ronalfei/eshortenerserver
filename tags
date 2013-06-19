@@ -245,8 +245,13 @@ MAX_CONNECTIONS	./deps/emysql/t/emysql_eqc.erl	/^-define(MAX_CONNECTIONS, 40).$/
 MODULES	./deps/cowboy/erlang.mk	/^MODULES = $(shell ls src\/*.erl | sed 's\/src\\\/\/\/;s\/\\.erl\/,\/' | sed '$$s\/.$$\/\/')$/;"	m
 MODULES	./deps/emysql/Makefile	/^MODULES=$(shell ls -1 src\/*.erl | awk -F[\/.] '{ print $$2 }' | sed '$$q;s\/$$\/,\/g')$/;"	m
 MODULES	./deps/ranch/erlang.mk	/^MODULES = $(shell ls src\/*.erl | sed 's\/src\\\/\/\/;s\/\\.erl\/,\/' | sed '$$s\/.$$\/\/')$/;"	m
+MYSQL_DATABASE	./src/ess.hrl	/^-define(MYSQL_DATABASE, "ld_ess").$/;"	d
+MYSQL_HOST	./src/ess.hrl	/^-define(MYSQL_HOST, "10.100.1.106").$/;"	d
 MYSQL_NATIVE_PASSWORD	./deps/emysql/include/emysql.hrl	/^-define(MYSQL_NATIVE_PASSWORD, "mysql_native_password").$/;"	d
 MYSQL_OLD_PASSWORD	./deps/emysql/include/emysql.hrl	/^-define(MYSQL_OLD_PASSWORD, "mysql_old_password").$/;"	d
+MYSQL_PASSWORD	./src/ess.hrl	/^-define(MYSQL_PASSWORD, "147852369").$/;"	d
+MYSQL_PORT	./src/ess.hrl	/^-define(MYSQL_PORT, 3306).$/;"	d
+MYSQL_USER	./src/ess.hrl	/^-define(MYSQL_USER, "web").$/;"	d
 More_Record_Types	./deps/emysql/doc/overview-summary.html	/^<h5><a name="More_Record_Types">More Record Types<\/a><\/h5>$/;"	a
 More_Samples	./deps/emysql/doc/overview-summary.html	/^<h3><a name="More_Samples">More Samples<\/a><\/h3><p>$/;"	a
 NOTICE	./deps/lager/include/lager.hrl	/^-define(NOTICE, 32).$/;"	d

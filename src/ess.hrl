@@ -7,6 +7,13 @@
 
 -define(HTTP_DOMAIN, <<"dl.vips100.com">>). % cowboy http listen port
 
+
+-define(MYSQL_HOST, "10.100.1.106").
+-define(MYSQL_PORT, 3306).
+-define(MYSQL_USER, "web").
+-define(MYSQL_PASSWORD, "147852369").
+-define(MYSQL_DATABASE, "ld_ess").
+
 -define(
 ROUTER,
 [ 
