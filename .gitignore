@@ -1,0 +1,6 @@
+deps/*
+ebin/*
+log/*
+*.log
+*.log.*
+*.beam
