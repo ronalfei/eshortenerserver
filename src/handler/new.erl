@@ -37,7 +37,7 @@ try
 	Hash	= uuid:create(Url),
 	ess_dao:set(Hash, Url, Host, Expire, Memo),
 	Link = case Host of
-		<<>> -> <<"http://", ?HTTP_DOMAIN/binary, Hash/binary>>;
+		<<>> -> <<"http://", ?HTTP_DOMAIN/binary, "/", Hash/binary>>;
 		_Any -> <<"http://", Host/binary, "/", Hash/binary>>
 	end,
 	Response = ess_util:response_json(200, <<"ok">>, [{<<"link">>, Link}, {<<"host">>, Host}, {<<"url">>, Url}, {<<"expire">>, <<>>}, {<<"memo">>, Memo}]),
