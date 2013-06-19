@@ -34,6 +34,8 @@ try
 			Expire	= UrlInfo#url_map.expire,
 			%calendar:datetime_to_gregorian_seconds(erlang:localtime()), % result is 63538020074 can use be compare
 			case Host of
+				<<>>	->
+					{ok, Req2} = cowboy_req:reply(301, [{<<"Location">>, Url}], <<>>, Req1);
 				undefined ->
 					{ok, Req2} = cowboy_req:reply(301, [{<<"Location">>, Url}], <<>>, Req1);
 				Host ->
