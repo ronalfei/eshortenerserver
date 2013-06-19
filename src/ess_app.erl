@@ -17,7 +17,7 @@ start(_Type, _Args) ->
 	Dispatch = cowboy_router:compile( ?ROUTER ),
 io:format("dispatch is ~p", [Dispatch]),
 
-	{ok, _} = cowboy:start_http(http, 100, [{port, 8181}], [
+	{ok, _} = cowboy:start_http(http, 100, [{port, ?HTTP_PORT}], [
 	%{ok, _} = cowboy:start_http(http, 100, [{port, 80}], [
 		{env, [{dispatch, Dispatch}]}
 	]),

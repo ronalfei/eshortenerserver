@@ -207,6 +207,8 @@ FULLSTOP	./src/libs/mochiweb_util.erl	/^-define(FULLSTOP, 46). % $\\.$/;"	d
 From_the_Erlang_Manual	./deps/emysql/doc/emysql.html	/^  <h4><a name="From_the_Erlang_Manual">From the Erlang Manual<\/a><\/h4><p>  $/;"	a
 FuzzingClientFactory	./deps/cowboy/test/autobahn_SUITE_data/test.py	/^    from autobahntestsuite.fuzzing import FuzzingClientFactory$/;"	i
 Getting_Emysql	./deps/emysql/doc/overview-summary.html	/^<h3><a name="Getting_Emysql">Getting Emysql<\/a><\/h3>$/;"	a
+HTTP_DOMAIN	./src/ess.hrl	/^-define(HTTP_DOMAIN, <<"dl.vips100.com">>). % cowboy http listen port$/;"	d
+HTTP_PORT	./src/ess.hrl	/^-define(HTTP_PORT, 8181). % cowboy http listen port$/;"	d
 Hello_World	./deps/emysql/doc/overview-summary.html	/^<h4><a name="Hello_World">Hello World<\/a><\/h4>$/;"	a
 History	./deps/emysql/doc/overview-summary.html	/^<h3><a name="History">History<\/a><\/h3>$/;"	a
 IN	./src/libs/md5.erl	/^-define(IN(X,Min,Max), X >= Min, X =< Max).$/;"	d
