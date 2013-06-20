@@ -35,7 +35,7 @@ try
 	case Result of 
 		[] ->
 			Response = ess_util:response_json(<<"200">>, Hash, []),
-			{ok, Req2} = cowboy_req:reply(200, [], Response, Req1);
+			{ok, Req2} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}], Response, Req1);
 		[UrlInfo] ->
 			Url		= UrlInfo#url_map.url,
 			Host	= UrlInfo#url_map.host,
@@ -45,20 +45,20 @@ try
 			case Host of
 				undefined ->
 					Response = ess_util:response_json(200, <<"">>, [{<<"host">>, <<>>}, {<<"url">>, Url}, {<<"expire">>, <<>>}, {<<"memo">>, Memo}]),
-					{ok, Req2} = cowboy_req:reply(200, [], Response, Req1);
+					{ok, Req2} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}], Response, Req1);
 				Host ->
 					Response = ess_util:response_json(200, <<"">>, [{<<"host">>, Host}, {<<"url">>, Url}, {<<"expire">>, <<>>}, {<<"memo">>, Memo}]),
-					{ok, Req2} = cowboy_req:reply(200, [], Response, Req1)
+					{ok, Req2} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}], Response, Req1)
 			end
 	end,
 	{ok, Req2, State}
 catch
 	throw:{Code, Msg} ->
 		Response1 = ess_util:response_json(Code, Msg, []),
-		{ok, Reqx} = cowboy_req:reply(200, [], Response1, Req),
+		{ok, Reqx} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}], Response1, Req),
 		{ok, Reqx, State};
 
-	_:_  -> {ok, Reqx} = cowboy_req:reply(500, [], [], Req),
+	_:_  -> {ok, Reqx} = cowboy_req:reply(500, [{<<"HIT">>, ess_util:hostname()}], [], Req),
 			{ok, Reqx, State}
 end.
 

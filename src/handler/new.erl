@@ -37,12 +37,13 @@ try
 	Hash	= uuid:create(Url),
 	ess_dao:set(Hash, Url, Host, Expire, Memo),
 	Link = case Host of
-		<<>> -> <<"http://", ?HTTP_DOMAIN/binary, "/", Hash/binary>>;
+		<<>> -> <<"https://", ?HTTP_DOMAIN/binary, "/", Hash/binary>>;
 		_Any -> <<"http://", Host/binary, "/", Hash/binary>>
 	end,
 	Response = ess_util:response_json(200, <<"ok">>, [{<<"link">>, Link}, {<<"host">>, Host}, {<<"url">>, Url}, {<<"expire">>, <<>>}, {<<"memo">>, Memo}]),
 	lager:debug("Response is ~p ~n", [Response]),
-	{ok, Req2} = cowboy_req:reply(200, [{<<"Content-Type">>, <<"application/json">>}, {<<"Access-Control-Allow-Origin">>, <<"*">>}], [Response], Req1),
+	ResponHeader = [{<<"HIT">>, ess_util:hostname()}, {<<"Content-Type">>, <<"application/json">>}, {<<"Access-Control-Allow-Origin">>, <<"*">>}],
+	{ok, Req2} = cowboy_req:reply(200, ResponHeader, [Response], Req1),
 	{ok, Req2, State}
 catch
 	throw:{Code, Msgx} ->

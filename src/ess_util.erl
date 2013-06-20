@@ -14,3 +14,8 @@ response_json(Code, Msg, Data) ->
 	],
 	lager:debug("jsx will encode Term : ~p ~n", [Term]),
 	jsx:encode(Term).
+
+
+hostname() ->
+	{ok, HostName} = inet:gethostname(),
+	list_to_binary(HostName).

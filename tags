@@ -2372,6 +2372,7 @@ host	./deps/cowboy/src/cowboy_req.erl	/^host(Req) ->$/;"	f	module:cowboy_req
 host_info	./deps/cowboy/src/cowboy_req.erl	/^host_info(Req) ->$/;"	f	module:cowboy_req
 host_url	./deps/cowboy/src/cowboy_req.erl	/^host_url(Req=#http_req{port=undefined}) ->$/;"	f	module:cowboy_req
 host_url	./deps/cowboy/src/cowboy_req.erl	/^host_url(Req=#http_req{transport=Transport, host=Host, port=Port}) ->$/;"	f	module:cowboy_req
+hostname	./src/ess_util.erl	/^hostname() ->$/;"	f	module:ess_util
 hstate	./deps/emysql/src/emysql_conn.erl	/^hstate(State) ->$/;"	f	module:emysql_conn
 http10_chunkless	./deps/cowboy/test/http_SUITE.erl	/^http10_chunkless(Config) ->$/;"	f	module:http_SUITE
 http10_hostless	./deps/cowboy/test/http_SUITE.erl	/^http10_hostless(Config) ->$/;"	f	module:http_SUITE

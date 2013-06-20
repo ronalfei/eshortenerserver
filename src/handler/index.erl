@@ -26,7 +26,7 @@ try
 	
 	case Result of 
 		[] ->
-			{ok, Req2} = cowboy_req:reply(404, [], <<"no url found or url expired">>, Req1);
+			{ok, Req2} = cowboy_req:reply(404, [{<<"HIT">>, ess_util:hostname()}], <<"no url found or url expired">>, Req1);
 
 		[UrlInfo] ->
 			Url		= UrlInfo#url_map.url,
@@ -35,21 +35,21 @@ try
 			%calendar:datetime_to_gregorian_seconds(erlang:localtime()), % result is 63538020074 can use be compare
 			case Host of
 				<<>>	->
-					{ok, Req2} = cowboy_req:reply(301, [{<<"Location">>, Url}], <<>>, Req1);
+					{ok, Req2} = cowboy_req:reply(301, [{<<"HIT">>, ess_util:hostname()}, {<<"Location">>, Url}], <<>>, Req1);
 				undefined ->
-					{ok, Req2} = cowboy_req:reply(301, [{<<"Location">>, Url}], <<>>, Req1);
+					{ok, Req2} = cowboy_req:reply(301, [{<<"HIT">>, ess_util:hostname()}, {<<"Location">>, Url}], <<>>, Req1);
 				Host ->
-					{ok, Req2} = cowboy_req:reply(200, [{<<"Content-Type">>, <<"text/html">>}], iframe(Url), Req1)
+					{ok, Req2} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}, {<<"Content-Type">>, <<"text/html">>}], iframe(Url), Req1)
 			end
 	end,
 	{ok, Req2, State}
 catch 
 	throw:{Code, Msg} ->
 		Response1 = ess_util:response_json(Code, Msg, []),
-		{ok, Reqx} = cowboy_req:reply(200, [], Response1, Req),
+		{ok, Reqx} = cowboy_req:reply(200, [{<<"HIT">>, ess_util:hostname()}], Response1, Req),
 		{ok, Reqx, State};
 
-	_:_  -> {ok, Reqx} = cowboy_req:reply(500, [], [], Req),
+	_:_  -> {ok, Reqx} = cowboy_req:reply(500, [{<<"HIT">>, ess_util:hostname()}], [], Req),
 			{ok, Reqx, State}
 
 end.
