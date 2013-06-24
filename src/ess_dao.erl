@@ -41,8 +41,12 @@ get(Hash, records) ->
 	        Resource = mysql_util:execute_prepare(get_by_hash, [Hash]),
 	        Result = emysql_util:as_record(Resource, url_map, record_info(fields, url_map)),
             lager:debug("mysql result is ~p", [Result]),
-            ets:insert(hashtable, {Hash, Result}),
-	        Result
+            case Result of 
+                [] -> [];
+                 _ ->
+                    ets:insert(hashtable, {Hash, Result}),
+	                Result
+            end
     end.
 
 	
