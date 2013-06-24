@@ -25,4 +25,6 @@ execute(Sql) when is_binary(Sql) ->
 	emysql:execute(?POOL_NAME, Sql).
 
 execute_prepare(Statment, Args) when is_list(Args), is_atom(Statment) ->
-	emysql:execute(?POOL_NAME, Statment, Args).
+	Ret = emysql:execute(?POOL_NAME, Statment, Args),
+	lager:debug("mysql resource is ~p", [Ret]),
+	Ret.

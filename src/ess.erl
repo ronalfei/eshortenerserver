@@ -4,7 +4,7 @@
 -module(ess).
 
 %% API.
--export([start/0]).
+-export([start/0, log/1]).
 
 %% API.
 
@@ -18,3 +18,7 @@ start() ->
 	mysql_util:init(),
 	lager:set_loglevel(lager_console_backend, ?LOG_LEVEL).
 
+
+
+log(Level) when is_atom(Level) ->
+    lager:set_loglevel(lager_console_backend, Level).

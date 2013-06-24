@@ -31,12 +31,36 @@ get(Hash, proplists) ->
 
 
 get(Hash, records) ->
-	Resource = mysql_util:execute_prepare(get_by_hash, [Hash]),
-	Result = emysql_util:as_record(Resource, url_map, record_info(fields, url_map)),
-	Result.
+    check_ets(),
+    EtsResource = ets:lookup(hashtable, Hash),
+    lager:debug("Ets result is ~p", [EtsResource]),
+    case EtsResource of
+        [{Hash, EtsResult}] ->
+            EtsResult;
+        [] ->
+	        Resource = mysql_util:execute_prepare(get_by_hash, [Hash]),
+	        Result = emysql_util:as_record(Resource, url_map, record_info(fields, url_map)),
+            lager:debug("mysql result is ~p", [Result]),
+            ets:insert(hashtable, {Hash, Result}),
+	        Result
+    end.
 
 	
 
 set(Hash, Url, Host, Expire, Memo) ->
 	L = [Hash, Url, Host, Expire, Memo],
 	mysql_util:execute_prepare(set_by_hash, L).
+
+
+init_ets() ->
+    Name = hashtable,
+    Options = [set, public, named_table, {read_concurrency, true} ],
+    ets:new(Name, Options).
+
+
+check_ets() ->
+    case ets:info(hashtable) of
+        undefined ->
+            init_ets();
+        _ -> ok
+    end.

@@ -746,6 +746,7 @@ check_constraint	./deps/cowboy/src/cowboy_router.erl	/^check_constraint({_, func
 check_constraint	./deps/cowboy/src/cowboy_router.erl	/^check_constraint({_, int}, Value) ->$/;"	f	module:cowboy_router
 check_constraints	./deps/cowboy/src/cowboy_router.erl	/^check_constraints([Constraint|Tail], Bindings) ->$/;"	f	module:cowboy_router
 check_constraints	./deps/cowboy/src/cowboy_router.erl	/^check_constraints([], Bindings) ->$/;"	f	module:cowboy_router
+check_ets	./src/ess_dao.erl	/^check_ets() ->$/;"	f	module:ess_dao
 check_hwm	./deps/lager/src/error_logger_lager_h.erl	/^check_hwm(State = #state{hwm = Hwm, lasttime = Last, dropped = Drop}) ->$/;"	f	module:error_logger_lager_h
 check_hwm	./deps/lager/src/error_logger_lager_h.erl	/^check_hwm(State = #state{hwm = undefined}) ->$/;"	f	module:error_logger_lager_h
 check_hwm	./deps/lager/src/error_logger_lager_h.erl	/^check_hwm(State = #state{mps = Mps, hwm = Hwm}) when Mps < Hwm ->$/;"	f	module:error_logger_lager_h
@@ -2580,6 +2581,7 @@ init_dispatch	./deps/cowboy/test/http_SUITE.erl	/^init_dispatch(Config) ->$/;"	f
 init_dispatch	./deps/cowboy/test/spdy_SUITE.erl	/^init_dispatch(Config) ->$/;"	f	module:spdy_SUITE
 init_dispatch	./deps/cowboy/test/ws_SUITE.erl	/^init_dispatch() ->$/;"	f	module:ws_SUITE
 init_escape_table	./deps/emysql/etc/markdown.lua	/^function init_escape_table()$/;"	f
+init_ets	./src/ess_dao.erl	/^init_ets() ->$/;"	f	module:ess_dao
 init_hash	./deps/emysql/etc/markdown.lua	/^function init_hash(text)$/;"	f
 init_per_group	./deps/cowboy/test/autobahn_SUITE.erl	/^init_per_group(autobahn, Config) ->$/;"	f	module:autobahn_SUITE
 init_per_group	./deps/cowboy/test/http_SUITE.erl	/^init_per_group(http, Config) ->$/;"	f	module:http_SUITE
@@ -3035,6 +3037,7 @@ log	./deps/lager/src/lager.erl	/^log(Level, Metadata, Format, Args) when is_list
 log	./deps/lager/src/lager.erl	/^log(Level, Metadata, Message) when is_list(Metadata) ->$/;"	f	module:lager
 log	./deps/lager/src/lager.erl	/^log(Level, Pid, Format, Args) when is_pid(Pid); is_atom(Pid) ->$/;"	f	module:lager
 log	./deps/lager/src/lager.erl	/^log(Level, Pid, Message) when is_pid(Pid); is_atom(Pid) ->$/;"	f	module:lager
+log	./src/ess.erl	/^log(Level) when is_atom(Level) ->$/;"	f	module:ess
 log_event	./deps/lager/src/error_logger_lager_h.erl	/^log_event(Event, State) ->$/;"	f	module:error_logger_lager_h
 lookup	./deps/emysql/src/emysql_statements.erl	/^lookup(Key, Tree) ->$/;"	f	module:emysql_statements
 loop	./deps/cowboy/src/cowboy_spdy.erl	/^loop(State=#state{parent=Parent, socket=Socket, transport=Transport,$/;"	f	module:cowboy_spdy
