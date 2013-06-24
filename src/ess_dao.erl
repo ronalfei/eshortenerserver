@@ -55,7 +55,10 @@ set(Hash, Url, Host, Expire, Memo) ->
 init_ets() ->
     Name = hashtable,
     Options = [set, public, named_table, {read_concurrency, true} ],
-    ets:new(Name, Options).
+    ets:new(Name, Options),
+    Leader = group_leader(),
+    lager:debug(" group leader for this connnection is ~p", [Leader]),
+    ets:give_away(hashtable, Leader, []).
 
 
 check_ets() ->
