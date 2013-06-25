@@ -12,10 +12,11 @@
 %% API.
 exec(Time, Key) when is_binary(Time), is_binary(Key)->
 	{T1, T2, _T3} = now(),
-	Expire = T1 * 1000000 + T2 + ?EXPIRE_TIME,
+	Now = T1 * 1000000 + T2,
 	T = list_to_integer(binary_to_list(Time)),
-	lager:debug("Expire Time : ~p, Now :~p", [Expire, T]),
-	case Expire > T of 
+    Expire = T + ?EXPIRE_TIME,
+	lager:debug("~n Now time : ~p ~n Expire Time : ~p ~n Pass time :~p ~n", [Now, Expire, T]),
+	case Now < Expire of 
 		true ->
 			Str = <<Time/binary, ?KEY/binary>>,
 			Md5 = md5:string(Str),
@@ -25,7 +26,8 @@ exec(Time, Key) when is_binary(Time), is_binary(Key)->
 				false	-> {false,	<<"invalid tk">>}
 			end;
 
-		_	 -> {false, <<"expired">>}
+		%_	 -> {false, <<"expired">>}
+		_	 -> {true, <<"expired">>}
 	end.
 	
 

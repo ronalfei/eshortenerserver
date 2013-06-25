@@ -12,6 +12,7 @@ init() ->
         ?MYSQL_DATABASE, utf8),
 	emysql:prepare(get_by_hash, <<"select * from url_map where hash_id=?">>),
 	emysql:prepare(set_by_hash, <<"replace into url_map set hash_id=?, url=?, host=?, expire=?, memo=?">>),
+	emysql:prepare(del_by_hash, <<"delete from url_map where hash_id=?">>),
 	lager:info("emysql pool init success").
 
 
@@ -24,7 +25,7 @@ select(Sql) when is_binary(Sql) ->
 execute(Sql) when is_binary(Sql) ->
 	emysql:execute(?POOL_NAME, Sql).
 
-execute_prepare(Statment, Args) when is_list(Args), is_atom(Statment) ->
+execute_prepare(Statment, Args) when is_list(Args), is_atom(Statment), Args =/= [] ->
 	Ret = emysql:execute(?POOL_NAME, Statment, Args),
 	lager:debug("mysql resource is ~p", [Ret]),
 	Ret.

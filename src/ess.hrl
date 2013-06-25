@@ -14,12 +14,16 @@
 -define(MYSQL_PASSWORD, "147852369").
 -define(MYSQL_DATABASE, "ld_ess").
 
+
+-define(HOSTNAME, ess_util:hostname()).
+
 -define(
 ROUTER,
 [ 
     {'_', [ 
          {"/new",			new,    	[]} 
         ,{"/check",			check,		[]} 
+        ,{"/delete",        delete,		[]} 
         ,{'_',				index,		[]} 
     ]} 
 ]

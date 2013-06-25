@@ -52,10 +52,30 @@ get(Hash, records) ->
 	
 
 set(Hash, Url, Host, Expire, Memo) ->
-	L = [Hash, Url, Host, Expire, Memo],
+    lager:debug("passed expire time is ~p", [Expire]),
+    ExpireTime = case Expire of
+        <<>> ->
+                {Y, M, D} = date(),
+                Y1 = Y+1,
+                Y_=list_to_binary(integer_to_list(Y1)), 
+                M_=list_to_binary(integer_to_list(M)), 
+                D_=list_to_binary(integer_to_list(D)), 
+                lager:debug("Y ~p, M ~p, D ~p ", [Y_, M_, D_]),
+                E = <<Y_/binary, "-", M_/binary, "-", D_/binary>>,
+                lager:debug("expire time default is ~p ~n", [E]),
+                E;
+        _    -> Expire
+    end,
+	L = [Hash, Url, Host, ExpireTime, Memo],
 	mysql_util:execute_prepare(set_by_hash, L).
 
 
+delete(Hash) ->
+    ets:delete(hashtable, Hash),
+    mysql_util:execute_prepare(del_by_hash, [Hash]).
+
+
+%%------------- ets intenal function------------
 init_ets() ->
     Name = hashtable,
     Options = [set, public, named_table, {read_concurrency, true} ],
