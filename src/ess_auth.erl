@@ -26,8 +26,7 @@ exec(Time, Key) when is_binary(Time), is_binary(Key)->
 				false	-> {false,	<<"invalid tk">>}
 			end;
 
-		%_	 -> {false, <<"expired">>}
-		_	 -> {true, <<"expired">>}
+		_	 -> {false, <<"expired">>}
 	end.
 	
 
