@@ -245,7 +245,6 @@ MAXPACKETBYTES	./deps/emysql/include/emysql.hrl	/^-define(MAXPACKETBYTES, 500000
 MAX_CONNECTIONS	./deps/emysql/t/emysql_eqc.erl	/^-define(MAX_CONNECTIONS, 40).$/;"	d
 MODULES	./deps/cowboy/erlang.mk	/^MODULES = $(shell ls src\/*.erl | sed 's\/src\\\/\/\/;s\/\\.erl\/,\/' | sed '$$s\/.$$\/\/')$/;"	m
 MODULES	./deps/emysql/Makefile	/^MODULES=$(shell ls -1 src\/*.erl | awk -F[\/.] '{ print $$2 }' | sed '$$q;s\/$$\/,\/g')$/;"	m
-MODULES	./deps/ranch/erlang.mk	/^MODULES = $(shell ls src\/*.erl | sed 's\/src\\\/\/\/;s\/\\.erl\/,\/' | sed '$$s\/.$$\/\/')$/;"	m
 MYSQL_DATABASE	./src/ess.hrl	/^-define(MYSQL_DATABASE, "ld_ess").$/;"	d
 MYSQL_HOST	./src/ess.hrl	/^-define(MYSQL_HOST, "10.100.1.106").$/;"	d
 MYSQL_NATIVE_PASSWORD	./deps/emysql/include/emysql.hrl	/^-define(MYSQL_NATIVE_PASSWORD, "mysql_native_password").$/;"	d
@@ -1068,6 +1067,8 @@ compile_brackets_split	./deps/cowboy/src/cowboy_router.erl	/^compile_brackets_sp
 compile_brackets_split	./deps/cowboy/src/cowboy_router.erl	/^compile_brackets_split(<< C, Rest\/binary >>, Acc, N) when C =:= $[ ->$/;"	f	module:cowboy_router
 compile_brackets_split	./deps/cowboy/src/cowboy_router.erl	/^compile_brackets_split(<< C, Rest\/binary >>, Acc, N) when C =:= $], N > 0 ->$/;"	f	module:cowboy_router
 compile_brackets_split	./deps/cowboy/src/cowboy_router.erl	/^compile_brackets_split(<<>>, _, _) ->$/;"	f	module:cowboy_router
+compile_dtl	./deps/ranch/erlang.mk	/^define compile_dtl$/;"	m
+compile_erl	./deps/ranch/erlang.mk	/^define compile_erl$/;"	m
 compile_forms	./deps/goldrush/src/glc_code.erl	/^compile_forms(Forms, Opts) ->$/;"	f	module:glc_code
 compile_host	./deps/cowboy/src/cowboy_router.erl	/^compile_host(HostMatch) when is_binary(HostMatch) ->$/;"	f	module:cowboy_router
 compile_host	./deps/cowboy/src/cowboy_router.erl	/^compile_host(HostMatch) when is_list(HostMatch) ->$/;"	f	module:cowboy_router
@@ -1372,7 +1373,7 @@ dep_ct_helper	./deps/cowboy/Makefile	/^dep_ct_helper = https:\/\/github.com\/ext
 dep_ct_helper	./deps/ranch/Makefile	/^dep_ct_helper = https:\/\/github.com\/extend\/ct_helper.git master$/;"	m
 dep_ranch	./deps/cowboy/Makefile	/^dep_ranch = https:\/\/github.com\/extend\/ranch.git 0.8.3$/;"	m
 dep_target	./deps/cowboy/erlang.mk	/^define dep_target =$/;"	m
-dep_target	./deps/ranch/erlang.mk	/^define dep_target =$/;"	m
+dep_target	./deps/ranch/erlang.mk	/^define dep_target$/;"	m
 depth_limit_test	./deps/lager/src/lager_trunc_io.erl	/^depth_limit_test() ->$/;"	f	module:lager_trunc_io
 description	./deps/emysql/doc/emysql.html	/^<h2><a name="description">Description<\/a><\/h2><p>The main Emysql module.<\/p>$/;"	a
 destinations	./deps/lager/src/lager_msg.erl	/^destinations(Msg) ->$/;"	f	module:lager_msg
@@ -1425,6 +1426,8 @@ doublequote	./deps/jsx/src/jsx_decoder.erl	/^doublequote(<<Rest\/binary>>, Handl
 doublequote	./deps/jsx/src/jsx_decoder.erl	/^doublequote(<<Rest\/binary>>, Handler, Acc, [singlequote|_] = Stack, Config) ->$/;"	f	module:jsx_decoder
 drop_table	./deps/emysql/t/emysql_eqc.erl	/^drop_table(PoolId, {TableName, _}) ->$/;"	f	module:emysql_eqc
 ds	./deps/emysql/doc/overview-summary.html	/^<li class="ref email"> Dave Smith:<a name="ds" id="ds" href="mailto:dizzyd@dizzyd.com">dizzyd@dizzyd.com<\/a><\/li>$/;"	a
+dtl_verbose	./deps/ranch/erlang.mk	/^dtl_verbose = $(dtl_verbose_$(V))$/;"	m
+dtl_verbose_0	./deps/ranch/erlang.mk	/^dtl_verbose_0 = @echo " DTL   " $(filter %.dtl,$(?F));$/;"	m
 dualmap	./deps/emysql/src/emysql_util.erl	/^dualmap(F, [E1 | R1], [E2 | R2]) ->$/;"	f	module:emysql_util
 dualmap	./deps/emysql/src/emysql_util.erl	/^dualmap(_F, [], []) ->$/;"	f	module:emysql_util
 dualmap-3	./deps/emysql/doc/emysql_util.html	/^<h3 class="function"><a name="dualmap-3">dualmap\/3<\/a><\/h3>$/;"	a
@@ -1593,7 +1596,7 @@ erl	./deps/goldrush/src/glc_code.erl	/^-define(erl, erl_syntax).$/;"	d
 erlc_verbose	./deps/cowboy/erlang.mk	/^erlc_verbose = $(erlc_verbose_$(V))$/;"	m
 erlc_verbose	./deps/ranch/erlang.mk	/^erlc_verbose = $(erlc_verbose_$(V))$/;"	m
 erlc_verbose_0	./deps/cowboy/erlang.mk	/^erlc_verbose_0 = @echo " ERLC  " $(?F);$/;"	m
-erlc_verbose_0	./deps/ranch/erlang.mk	/^erlc_verbose_0 = @echo " ERLC  " $(?F);$/;"	m
+erlc_verbose_0	./deps/ranch/erlang.mk	/^erlc_verbose_0 = @echo " ERLC  " $(filter-out %.dtl,$(?F));$/;"	m
 error	./deps/jsx/src/jsx_decoder.erl	/^-define(error(State, Bin, Handler, Acc, Stack, Config),$/;"	d
 error	./deps/jsx/src/jsx_decoder.erl	/^-define(error(State, Bin, Handler, Stack, Config),$/;"	d
 error	./deps/jsx/src/jsx_encoder.erl	/^-define(error(State, Term, Handler, Config),$/;"	d
@@ -2063,7 +2066,7 @@ get_by_type	./deps/emysql/t/honeybee.erl	/^get_by_type(Type) ->$/;"	f	module:hon
 get_byte_from_int	./src/libs/xxtea.erl	/^get_byte_from_int(Number, Index) ->$/;"	f	module:xxtea
 get_connections_sup	./deps/ranch/src/ranch_server.erl	/^get_connections_sup(Ref) ->$/;"	f	module:ranch_server
 get_dep	./deps/cowboy/erlang.mk	/^define get_dep =$/;"	m
-get_dep	./deps/ranch/erlang.mk	/^define get_dep =$/;"	m
+get_dep	./deps/ranch/erlang.mk	/^define get_dep$/;"	m
 get_html	./deps/cowboy/examples/websocket/src/toppage_handler.erl	/^get_html() ->$/;"	f	module:toppage_handler
 get_loglevel	./deps/lager/src/lager.erl	/^get_loglevel(Handler) ->$/;"	f	module:lager
 get_loglevel_test	./deps/lager/src/lager_file_backend.erl	/^get_loglevel_test() ->$/;"	f	module:lager_file_backend
@@ -2662,6 +2665,10 @@ integer	./deps/jsx/src/jsx_decoder.erl	/^integer(<<S, Rest\/binary>>, Handler, A
 integer	./deps/jsx/src/jsx_decoder.erl	/^integer(<<S, Rest\/binary>>, Handler, Acc, Stack, Config) when S =:= ?zero; ?is_nonzero(S) ->$/;"	f	module:jsx_decoder
 integer	./deps/jsx/src/jsx_decoder.erl	/^integer(Bin, Handler, Acc, Stack, Config) ->$/;"	f	module:jsx_decoder
 integers	./deps/jsx/src/jsx_tests.hrl	/^integers() ->$/;"	f
+io:format	./deps/cowboy/src/cowboy_http.erl	/^io:format("111111111111111111 ~p : ~p ~n", [Name, Value]),$/;"	f	module:cowboy_http
+io:format	./deps/cowboy/src/cowboy_http.erl	/^io:format("aaaaaaaaaaaaaaaaaaaaaa~n"),$/;"	f	module:cowboy_http
+io:format	./deps/cowboy/src/cowboy_http.erl	/^io:format("bbbbbbbbbbbbbbbbbbbbbb ~p ~p ~n ", [Rest, _Rest2]),$/;"	f	module:cowboy_http
+io:format	./deps/cowboy/src/cowboy_http.erl	/^io:format("cccccccccccccccccccccc ~p ~p ~n", [_Rest2, _Attr]),$/;"	f	module:cowboy_http
 io:format	./src/ess_app.erl	/^io:format("dispatch is ~p", [Dispatch]),$/;"	f	module:ess_app
 iolist_printing_test	./deps/lager/src/lager_trunc_io.erl	/^iolist_printing_test() ->$/;"	f	module:lager_trunc_io
 is_authorized	./deps/cowboy/examples/basic_auth/src/toppage_handler.erl	/^is_authorized(Req, S) ->$/;"	f	module:toppage_handler
@@ -5504,6 +5511,7 @@ weekday	./deps/cowboy/src/cowboy_http.erl	/^weekday(<< "Thursday", Rest\/binary 
 weekday	./deps/cowboy/src/cowboy_http.erl	/^weekday(<< "Tuesday", Rest\/binary >>, Fun) ->$/;"	f	module:cowboy_http
 weekday	./deps/cowboy/src/cowboy_http.erl	/^weekday(<< "Wednesday", Rest\/binary >>, Fun) ->$/;"	f	module:cowboy_http
 weekday	./deps/cowboy/src/cowboy_http.erl	/^weekday(_Any, _Fun) ->$/;"	f	module:cowboy_http
+when	./deps/cowboy/src/cowboy_http.erl	/^when C =:= $;; C =:= $\\t; C =:= $\\r; C =:= $\\n; C =:= $\\013; C =:= $\\014 ->$/;"	f	module:cowboy_http
 whitespace	./deps/cowboy/src/cowboy_http.erl	/^whitespace(<< C, Rest\/binary >>, Fun)$/;"	f	module:cowboy_http
 whitespace	./deps/cowboy/src/cowboy_http.erl	/^whitespace(Data, Fun) ->$/;"	f	module:cowboy_http
 who	./deps/cowboy/examples/compress_response/src/toppage_handler.erl	/^who perform work similar to the cowboy in their respective nations.\\n">>,$/;"	f	module:toppage_handler

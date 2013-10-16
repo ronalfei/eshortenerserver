@@ -7,4 +7,5 @@ erl -name ess@10.100.1.83 -pa ebin -pa deps/*/ebin -s ess -s reloader \
  -smp enable \
  +zdbbl 32768 \
  -setcookie ess \
- -eval "io:format(\"* Eventsource: http://localhost:8181/~n~n~n\"). "
+ -eval "io:format(\"* Eventsource: http://localhost:8181/~n~n~n\"). " \
+ %-detached 
