@@ -15,7 +15,7 @@ init(_Transport, Req, []) ->
 
 handle(Req, State) ->
 try
-	lager:debug("Original Req = ~n ~p ~n", [Req]),
+	lager:info("Original Req = ~n ~p ~n", [Req]),
 	{Path , Req1} = cowboy_req:path(Req),
 	Hash = fetch_hash(binary:split(Path, <<"/">>, [global])),
 	case Hash of

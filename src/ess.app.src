@@ -7,8 +7,7 @@
 	{registered, []},
 	{applications, [
 		kernel,
-		stdlib,
-		cowboy
+		stdlib
 	]},
 	{mod, {ess_app, []}},
 	{env, []}
