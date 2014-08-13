@@ -9,8 +9,8 @@
 
 -define(MYSQL_HOST, "10.100.1.106").
 -define(MYSQL_PORT, 3306).
--define(MYSQL_USER, "web").
--define(MYSQL_PASSWORD, "147852369").
+-define(MYSQL_USER, "user").
+-define(MYSQL_PASSWORD, "pass").
 -define(MYSQL_DATABASE, "ld_ess").
 
 
